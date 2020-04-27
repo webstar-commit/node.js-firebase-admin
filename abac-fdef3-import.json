@@ -1,0 +1,523 @@
+{
+  "activities" : {
+    "-Lv9Sz3j5wPsJ8f2nL9n" : {
+      "categoryId" : "-LunJWoITicuf6vgIXNg",
+      "description" : "this is for testing....",
+      "detail" : {
+        "duration" : "3",
+        "image" : {
+          "filename0" : "activity-6.jpg",
+          "filename1" : "activity-detail-1.jpg",
+          "filename2" : "activity-detail-2.jpg"
+        },
+        "report" : "asasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "startdate" : "06-12-2019",
+        "starttime" : "05:00",
+        "workerid" : "-LzYVYp3xuMhriowq9g6"
+      },
+      "duration_hrs" : "3",
+      "end_date" : "11-12-2019",
+      "id" : "-Lv9Sz3j5wPsJ8f2nL9n",
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/activity-1.jpg",
+      "isMeal" : "false",
+      "name" : "volley ball",
+      "price" : "300",
+      "report" : "Volleyball images",
+      "schoolId" : "-Lz5iRvPs-YnOuCGwP9Y",
+      "schoolName" : "School1",
+      "start_date" : "05-12-2019",
+      "start_time" : "05:00",
+      "workerId" : "-LzYVYp3xuMhriowq9g6"
+    },
+    "-LzIgFGQfpxIsw42inDZ" : {
+      "categoryId" : "-LzBqC-TFZxaS6qEBMJr",
+      "description" : "Piano lessons and exercises",
+      "detail" : {
+        "duration" : "2",
+        "image" : {
+          "filename0" : "activity-photos.jpg"
+        },
+        "report" : "Piano photos",
+        "startdate" : "27-01-2020",
+        "starttime" : "15:00",
+        "workerid" : "-Lz4x49KQ9r0C6kLDzVF"
+      },
+      "duration_hrs" : "2",
+      "end_date" : "07-02-2020",
+      "id" : "-LzIgFGQfpxIsw42inDZ",
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/",
+      "isMeal" : "false",
+      "name" : "Piano Exercise",
+      "price" : "300",
+      "report" : "piano images",
+      "schoolId" : "-Lz5iIa9pyivw5c0foS3",
+      "schoolName" : "School2",
+      "start_date" : "27-01-2020",
+      "start_time" : "15:00",
+      "workerId" : "-Lz4x49KQ9r0C6kLDzVF"
+    },
+    "-LzoQggMe5vaAOXqdC8X" : {
+      "categoryId" : "-LzBoiy5xShS_k0qd3US",
+      "categoryName" : "Esportives",
+      "description" : "test",
+      "duration_hrs" : "2",
+      "end_date" : "30-01-2020",
+      "id" : "-LzoQggMe5vaAOXqdC8X",
+      "image" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/images%2Factivity%2F-LzoQggMe5vaAOXqdC8X.jpg?alt=media&token=0aeb8c41-817d-4287-b848-aca98705e1d3",
+      "imageurl" : "-LzoQggMe5vaAOXqdC8X.jpg",
+      "name" : "test",
+      "price" : "200",
+      "report" : "test",
+      "schoolId" : "-Lz5iIa9pyivw5c0foS3",
+      "schoolName" : "School2",
+      "start_date" : "01-01-2020",
+      "start_time" : "12:59",
+      "workerId" : "-Lz4x49KQ9r0C6kLDzVF",
+      "workerName" : "Horace"
+    }
+  },
+  "categories" : {
+    "-LzBoiy5xShS_k0qd3US" : {
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/esportives.jpg",
+      "isMeal" : "false",
+      "name" : "Esportives"
+    },
+    "-LzBp1rCuUN611ID4lmn" : {
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/creatives.jpg",
+      "isMeal" : "false",
+      "name" : "Creatives"
+    },
+    "-LzBpLYCeNfWYPsY8PU6" : {
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/curtural.jpg",
+      "isMeal" : "false",
+      "name" : "Curtural"
+    },
+    "-LzBqC-TFZxaS6qEBMJr" : {
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/daprenentatge.jpg",
+      "isMeal" : "false",
+      "name" : "D'Aprenentatge"
+    },
+    "-LzBseWLW-ZQFrj-kYvl" : {
+      "image" : "https://abacadmin.herokuapp.com/assets/images/activity/servei.jpg",
+      "isMeal" : "false",
+      "name" : "SERVEI D'acollida ROOM"
+    }
+  },
+  "chat" : {
+	"parents" : {
+		"-Lz5-t65nsRQ-al_WIHr" : {
+			"topics" : {
+				"-Lz4fkdoeis4s" : {
+					"title" : "football basic 1",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 4059385827,
+					"messages": {
+						"-Lu0Kd5yfqY4PilTJvC": {
+							"message" : "Hi there",
+							"sendBy" : "admin",
+							"createdAt" : 3940822284,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu0IGMnwsEDqjygM" : {
+							"message" : "Hello",
+							"sendBy" : "user",
+							"createdAt" : 4059385827,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				},
+				"-Lz4fkdo4jds9" : {
+					"title" : "football basic 2",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 4920583820,
+					"messages": {
+						"-Lu1JmdorDZAVbKJ": {
+							"message" : "Hi there",
+							"sendBy" : "user",
+              "createdAt" : 2839204827,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu1JwPeqkCzQN-2Z": {
+							"message" : "I have a question",
+							"sendBy" : "user",
+              "createdAt" : 3742045829,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu1LhN4Db0tM5jRsx" : {
+							"message" : "Hi",
+							"sendBy" : "admin",
+							"createdAt" : 4920583820,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				},
+				"-Lz4fkd49sj3g" : {
+					"title" : "football basic 3",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 3049573710,
+					"messages": {
+						"-Lu0C7KTVaYRX7bVM": {
+							"message" : "Hi there",
+							"sendBy" : "admin",
+							"createdAt" : 2940384883,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu0C9NvUKH43a0JC9" : {
+							"message" : "Here now",
+							"sendBy" : "user",
+							"createdAt" : 3049573710,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				}
+			}
+		},
+		"-Lz56S-p9QcJ3ituKsHl" : {
+		},
+		"-LzqRovhoJj0QhjoolX_" : {
+		}
+	},
+	"workers" : {
+		"-Lz4x49KQ9r0C6kLDzVF" : 
+		{
+			"topics" : {
+				"-Lz4fkdoeis4L" : {
+					"title" : "football basic 1",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 4059385827,
+					"messages": {
+						"-Lu0Kd5yfqY4PilTJvC": {
+							"message" : "Hi there",
+							"sendBy" : "admin",
+							"createdAt" : 3940822284,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu0IGMnwsEDqjygM" : {
+							"message" : "Hello",
+							"sendBy" : "user",
+							"createdAt" : 4059385827,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				},
+				"-Lz4fkdo4jds0" : {
+					"title" : "football basic 2",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 4920583820,
+					"messages": {
+						"-Lu1JmdorDZAVbKJ": {
+							"message" : "Hi there",
+							"sendBy" : "user",
+              "createdAt" : 2839204827,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu1JwPeqkCzQN-2Z": {
+							"message" : "I have a question",
+							"sendBy" : "user",
+              "createdAt" : 3742045829,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu1LhN4Db0tM5jRsx" : {
+							"message" : "Hi",
+							"sendBy" : "admin",
+							"createdAt" : 4920583820,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				},
+				"-Lz4fkd49sj32" : {
+					"title" : "football basic 3",
+					"desc" : "lorem ipsum....",
+					"latest_time" : 3049573710,
+					"messages": {
+						"-Lu0C7KTVaYRX7bVM": {
+							"message" : "Hi there",
+							"sendBy" : "admin",
+							"createdAt" : 2940384883,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						},
+						"-Lu0C9NvUKH43a0JC9" : {
+							"message" : "Here now",
+							"sendBy" : "user",
+							"createdAt" : 3049573710,
+              "userName" : "Crueler",
+              "msgStatus" : false
+						}
+					}
+				}
+			}
+			
+		},
+		"-LzYVYp3xuMhriowq9g6" : {
+		}
+	}
+  },
+  "childrens" : {
+    "-LwBRt60f13VjyNjna0_" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "Jenny-babby",
+      "gender" : "Male",
+      "glutenIntolerant" : true,
+      "id" : "-LwBRt60f13VjyNjna0_",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "jenny@gmail.com",
+        "fullName" : "jennybabby",
+        "phone" : "1586554656"
+      },
+      "parentId" : "dZBwZgxF3VbnXgyJdy3hWKKZSRD3",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school2",
+      "schoolYear" : "4"
+    },
+    "-LwBoi8NizvkKrL0g54c" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "john",
+      "gender" : "Female",
+      "glutenIntolerant" : true,
+      "id" : "-LwBoi8NizvkKrL0g54c",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "john@126.com",
+        "fullName" : "jenny",
+        "phone" : "164537$"
+      },
+      "parentId" : "hoVQyq0KbDdCAbpmNmAY0MyrIy83",
+      "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/parentsApp%2FhoVQyq0KbDdCAbpmNmAY0MyrIy83%2F1576468069789.jpg?alt=media&token=c490030e-e5cb-4252-8443-7a3ba1047e3e",
+      "schoolYear" : "4"
+    },
+    "-LxDx_VGf0zqjuSD8F0_" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : true,
+      "fullName" : "Teste",
+      "gender" : "Male",
+      "glutenIntolerant" : false,
+      "id" : "-LxDx_VGf0zqjuSD8F0_",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "andersoonluan+teste@gmail.com",
+        "fullName" : "Anderson",
+        "phone" : "01738738737"
+      },
+      "otherFoodIntolerance" : "Teste",
+      "parentId" : "xtgNAlAeA3M0cgYcqcXsVZuAgMr2",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school2",
+      "schoolYear" : "123"
+    },
+    "-Lyljne9d-pigwc4ycyd" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "Abca",
+      "gender" : "Female",
+      "glutenIntolerant" : true,
+      "id" : "-Lyljne9d-pigwc4ycyd",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "",
+        "fullName" : "",
+        "phone" : ""
+      },
+      "parentId" : "Cy02Tyqmx2PeIEtZtqce9hVd8sv2",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school1",
+      "schoolYear" : "Second"
+    },
+    "-Lyt_zAW7dlfHmT3u8qV" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "Abacs",
+      "gender" : "Male",
+      "glutenIntolerant" : true,
+      "id" : "-Lyt_zAW7dlfHmT3u8qV",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "",
+        "fullName" : "",
+        "phone" : ""
+      },
+      "parentId" : "Y5huk1I70uadHgtNVLtdAwa1uVO2",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school1",
+      "schoolYear" : "Second"
+    },
+    "-Lz506TGJz0_WVhSLPHv" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "CruellaFirst",
+      "gender" : "Male",
+      "glutenIntolerant" : false,
+      "id" : "-Lz506TGJz0_WVhSLPHv",
+      "lactoseIntolerant" : true,
+      "otherFamilyContact" : {
+        "email" : "",
+        "fullName" : "",
+        "phone" : ""
+      },
+      "parentId" : "B27P2n0BcBePQ5U9UaDIHKkaQYB2",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school1",
+      "schoolYear" : "Third"
+    },
+    "-Lz56t593Z7vrQ1D8_8K" : {
+      "allowedKidGoHomeAlone" : true,
+      "allowedToMakePhotos" : true,
+      "allowedToSendNotification" : true,
+      "aminesIntolerant" : false,
+      "fullName" : "JasperFirst",
+      "gender" : "Female",
+      "glutenIntolerant" : true,
+      "id" : "-Lz56t593Z7vrQ1D8_8K",
+      "lactoseIntolerant" : false,
+      "otherFamilyContact" : {
+        "email" : "",
+        "fullName" : "",
+        "phone" : ""
+      },
+      "parentId" : "PIGslEotu1VkxjiJb0bJx45YXtl1",
+      "schoolId" : "oGaniWH9frlt62qGsmPD",
+      "schoolName" : "school1",
+      "schoolYear" : "Second"
+    }
+  },
+  "message" : {
+    "-LvqCVsSv5KdEZrxD650" : {
+      "token" : "e57uQic5EI8:APA91bFJEpLokTh6sVgrOYHIzApmV5UcA0czjg70Nps0fmPevqmRTq4ZxSSvEzLBTT50z9So1OXkwwxRhkoqxk1IsLfSR3v4B_R27Gx22TpvzzlMdB4KCJ40W3b4Wv8oZUgN1ZPr6rbs",
+      "userId" : "parents"
+    },
+    "aaaa" : "aaaaa",
+    "aaaaa" : "aaaa",
+    "aaaaaa" : "aaaaaaaa",
+    "aaaaaaa" : "aaaaaaaa",
+    "aaaaaaaa" : "aaaaaa",
+    "jenny jenny" : "sssd",
+    "qqqqq" : "qqqqq",
+    "sdsds" : "sdsdsd",
+    "sssssss" : "sssssss",
+    "ssssssss" : "ssssssss"
+  },
+  "parents" : {
+    "-Lz5-t65nsRQ-al_WIHr" : {
+      "email" : "cruella@gmail.com",
+      "fullName" : "Cruella",
+      "phone" : 12345678,
+      "uid" : "B27P2n0BcBePQ5U9UaDIHKkaQYB2"
+    },
+    "-Lz56S-p9QcJ3ituKsHl" : {
+      "email" : "jasper@gmail.com",
+      "fullName" : "Jasper",
+      "phone" : 12345678,
+      "uid" : "PIGslEotu1VkxjiJb0bJx45YXtl1"
+    },
+    "-LzqRovhoJj0QhjoolX_" : {
+      "email" : "leonardo@email.com",
+      "fullName" : "Leo",
+      "phone" : 11111111111,
+      "uid" : "Tks37yFXlJWBoDjrfwXo18BZShG2"
+    }
+  },
+  "schools" : {
+    "-Lz5iIa9pyivw5c0foS3" : {
+      "address" : "ScAddress2",
+      "director" : "Director2",
+      "name" : "School2"
+    },
+    "-Lz5iRvPs-YnOuCGwP9Y" : {
+      "address" : "ScAddress1",
+      "director" : "Director1",
+      "name" : "School1"
+    }
+  },
+  "ticket" : {
+    "-LvpL8_1fIsDpB48Kblx" : {
+      "datemonth" : "December-2019",
+      "price" : "250",
+      "today" : "2019-12-11T14:24:13.702Z",
+      "uid" : "8srJptjQk4bfCwSGWrGqWR0gAsz2"
+    },
+    "-LvpN872TZ0eP6NW-j36" : {
+      "datemonth" : "December-2019",
+      "price" : "250",
+      "today" : "2019-12-11T14:32:56.096Z",
+      "uid" : "8srJptjQk4bfCwSGWrGqWR0gAsz2"
+    },
+    "-LvpQjVTNBBIk6rDElGL" : {
+      "datemonth" : "December 11-2019",
+      "price" : "250",
+      "today" : "2019-12-11T14:48:39.754Z",
+      "uid" : "8srJptjQk4bfCwSGWrGqWR0gAsz2"
+    },
+    "-LwBqU7EBi86O59NFv9B" : {
+      "datemonth" : "December 16-2019",
+      "price" : "250",
+      "today" : "2019-12-16T03:56:46.652Z",
+      "uid" : "8srJptjQk4bfCwSGWrGqWR0gAsz2"
+    },
+    "-LwBqs4jtpryOBZD63fB" : {
+      "datemonth" : "December 16-2019",
+      "price" : "250",
+      "today" : "2019-12-16T03:58:28.936Z",
+      "uid" : "8srJptjQk4bfCwSGWrGqWR0gAsz2"
+    }
+  },
+  "token" : {
+    "-LvuNJiUxFB0epTfGErl" : {
+      "token" : "dmO84lZHqSY:APA91bH5kaH8JHMc3Xqjpr8R2Pju14Udzg29Z9ccPaGwtpJ6U2zve6y-8Z13GXvngwO7xMn62CggguRuhVr99CEtUfyxJbw6qKln0hzRP25-_305ZyuR0-8bhYQRll9fzwbLlvbzvMBX",
+      "userId" : "111111111"
+    },
+    "-LvuQpRSo1oNkoRKiYnA" : {
+      "token" : "dmO84lZHqSY:APA91bH5kaH8JHMc3Xqjpr8R2Pju14Udzg29Z9ccPaGwtpJ6U2zve6y-8Z13GXvngwO7xMn62CggguRuhVr99CEtUfyxJbw6qKln0hzRP25-_305ZyuR0-8bhYQRll9fzwbLlvbzvMBX",
+      "userId" : "111111111"
+    }
+  },
+  "workers" : {
+    "-Lz4x49KQ9r0C6kLDzVF" : {
+      "email" : "horace@gmail.com",
+      "fullName" : "Horace",
+      "phone" : "12345678",
+      "ssn" : "12345678",
+      "uid" : "ee11r6i6GcV0zhlgZ9xgNcGTIxF2"
+    },
+    "-LzYVYp3xuMhriowq9g6" : {
+      "email" : "anita@gmail.com",
+      "fullName" : "Anita",
+      "phone" : 12345678,
+      "ssn" : 12345678,
+      "uid" : "9sI7pIE20RQQd7OnXhLbbYyyFks1"
+    },
+    "QtA0vZGi4XMRXzPF6GCR2boqfaD3" : {
+      "registrationDocumentDisability" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/workersApp%2FQtA0vZGi4XMRXzPF6GCR2boqfaD3%2FregistrationDocuments%2F1576466042411.jpg?alt=media&token=ce07eae8-a60b-4d07-8e79-e30abcfd3dec",
+      "registrationDocumentSexCrimesCertificate" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/workersApp%2FQtA0vZGi4XMRXzPF6GCR2boqfaD3%2FregistrationDocuments%2F1576466024492.jpg?alt=media&token=3fbaff07-af58-48fc-bc78-a143cf1b2037",
+      "registrationDocumentTitrationMonitorManager" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/workersApp%2FQtA0vZGi4XMRXzPF6GCR2boqfaD3%2FregistrationDocuments%2F1576466058452.jpg?alt=media&token=7cbe8522-f1a2-43ba-93ee-11fd7aab0572",
+      "registrationDocumentsDni1" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/workersApp%2FQtA0vZGi4XMRXzPF6GCR2boqfaD3%2FregistrationDocuments%2F1576465981321.jpg?alt=media&token=7d6b9f73-d72f-4f7e-912b-7713f40e4bd7",
+      "registrationDocumentsDni2" : "https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/workersApp%2FQtA0vZGi4XMRXzPF6GCR2boqfaD3%2FregistrationDocuments%2F1576466003230.jpg?alt=media&token=6ab8b064-21f0-4d5e-9d22-a6bdc9b7a0b9"
+    }
+  }
+}

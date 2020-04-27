@@ -1,0 +1,404 @@
+<h2>Chatting</h2>
+
+<hr />
+<div class="row">
+    
+    <div class="col-lg-3">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>worker
+            </div>
+            <div class="card-body">
+                <div class="inbox_chat table table-bordered" id="workers">
+                    
+                </div>
+
+            </div>     
+        </div>
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>parent
+            </div>
+            <div class="card-body">
+                <div class="inbox_chat table table-bordered" id="parent">
+                </div>
+            </div>     
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>topic
+            </div>
+            <div class="card-body">
+                <div class="table table-bordered" id="topic">
+                    
+                </div>
+
+            </div>     
+        </div>
+        
+    </div>
+    <div class="col-lg-5">
+        
+        <div class="mesgs card mb-4">
+          <div class="msg_history">
+            
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <textarea type="text" rows="3" class="write_msg form-control" placeholder="Type a message ..."></textarea>
+              <button class="msg_send_btn" type="button"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <input type="hidden" id="select_topic"/>
+    <input type="hidden" id="select_user"/>
+    <input type="hidden" id="select_type"/>
+</div>
+<script>
+    var dbCategories = firebase.database().ref("workers");
+
+    dbCategories.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+
+                               
+                categorieshtml += "<div class='chat_list' data-id="+category.key+">";
+                categorieshtml += "<div class='chat_people'>";
+                //for category name
+                categorieshtml += "<div class='chat_img'><i class='fas fa-user'></i></div>";
+                categorieshtml += "<div class='chat_ib'>";
+                categorieshtml += "<h5>"+category.val().fullName+"</h5>";
+                categorieshtml += "</div>";
+
+                //for category description
+                categorieshtml += "</div>";
+                categorieshtml += "</div>";
+
+
+            });
+
+            $("#workers").html(categorieshtml);
+            
+        }
+
+    });
+    var dbParents = firebase.database().ref("parents");
+
+    dbParents.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+                
+                categorieshtml += "<div class='chat_list' data-id="+category.key+">";
+                categorieshtml += "<div class='chat_people'>";
+                //for category name
+                categorieshtml += "<div class='chat_img'><i class='fas fa-user'></i></div>";
+                categorieshtml += "<div class='chat_ib'>";
+                categorieshtml += "<h5>"+category.val().fullName+"</h5>";
+                categorieshtml += "</div>";
+
+                //for category description
+                categorieshtml += "</div>";
+                categorieshtml += "</div>";
+
+
+            });
+
+            $("#parent").html(categorieshtml);
+            
+        }
+
+    });
+
+    $(document).on('click', '#workers .chat_list', function()
+    {
+        $("#workers .chat_list").removeClass("active_chat");
+        $("#parent .chat_list").removeClass("active_chat");
+        $(this).addClass("active_chat");
+
+        $("#select_type").val('workers');
+        $("#select_topic").val('');
+        
+        var id = $(this).attr("data-id");
+        let chatRef = firebase.database().ref('chat/workers/'+id+"/topics");
+
+
+        
+        chatRef.orderByValue().on("value", function(snapshot)
+        {
+            var categorieshtml = ""; 
+            snapshot.forEach(function(data)
+            {
+                
+                var activeClass ="";
+                var previous_topic = $("#select_topic").val();
+                if(data.val().status =='active'  && !previous_topic)
+                {
+                    
+                    data.ref.update({'status':'inactive'});
+
+                }
+
+                if(data.val().status =='active')
+                {
+                    activeClass +="active_chat";
+                    
+
+                }
+                
+
+                categorieshtml += "<div class='chat_list "+activeClass+"' data-user ="+id+" data-id="+data.key+">";
+                categorieshtml += "<div class='chat_people'>";
+                //for category name
+                categorieshtml += "<div class='chat_img'><i class='fas fa-user'></i></div>";
+                categorieshtml += "<div class='chat_ib'>";
+                categorieshtml += "<h5>"+data.val().title;
+
+                var a = new Date(data.val().latest_time);
+                var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+                var month = months[a.getMonth()];
+                var date = a.getDate();
+
+                categorieshtml += "<span class='chat_date'>"+month+" "+date+"</span>";
+
+                if(data.val().unreadCount > 0)
+                {
+                    categorieshtml += "<small class='chat-alert label label-danger'>"+data.val().unreadCount+"</small>";
+                }
+                
+                categorieshtml +="</h5>";
+                categorieshtml +="<p>"+data.val().latest_message+"</p>";
+                categorieshtml += "</div>";
+
+                //for category description
+                categorieshtml += "</div>";
+                categorieshtml += "</div>";
+
+
+            });
+            $("#topic").html(categorieshtml);
+        });
+
+        $(".msg_history").html("");
+        
+    });
+    $(document).on('click', '#parent .chat_list', function()
+    {
+        $("#parent .chat_list").removeClass("active_chat");
+        $("#workers .chat_list").removeClass("active_chat");
+        $(this).addClass("active_chat");
+
+        $("#select_type").val('parents');
+        $("#select_topic").val('');
+        
+        
+        
+        var id = $(this).attr("data-id");
+        
+        let chatRef = firebase.database().ref('chat/parents/'+id+"/topics");
+
+        chatRef.orderByValue().on("value", function(snapshot)
+        {
+            var categorieshtml = ""; 
+            snapshot.forEach(function(data)
+            {
+                var activeClass = "";
+
+                var previous_topic = $("#select_topic").val();
+                if(data.val().status =='active' && !previous_topic)
+                {
+                                  
+                    data.ref.update({'status':'inactive'});
+                }
+
+                if(data.val().status =='active')
+                {
+
+                    activeClass +="active_chat";
+                }
+
+                categorieshtml += "<div class='chat_list "+activeClass+"' data-user ="+id+" data-id="+data.key+">";
+                categorieshtml += "<div class='chat_people'>";
+                //for category name
+                categorieshtml += "<div class='chat_img'><i class='fas fa-user'></i></div>";
+                categorieshtml += "<div class='chat_ib'>";
+                categorieshtml += "<h5>"+data.val().title;
+
+                var a = new Date(data.val().latest_time);
+                var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+                var month = months[a.getMonth()];
+                var date = a.getDate();
+
+                categorieshtml += "<span class='chat_date'>"+month+" "+date+"</span>";
+
+                if(data.val().unreadCount > 0)
+                {
+                    categorieshtml += "<small class='chat-alert label label-danger'>"+data.val().unreadCount+"</small>";
+                }
+                
+                categorieshtml +="</h5>";
+                categorieshtml +="<p>"+data.val().latest_message+"</p>";
+                categorieshtml += "</div>";
+
+                //for category description
+                categorieshtml += "</div>";
+                categorieshtml += "</div>";
+
+
+            });
+            $("#topic").html(categorieshtml);
+        });
+        $(".msg_history").html("");
+    });
+
+    $(document).on('click', '#topic .chat_list', function(event)
+    {
+        event.preventDefault();
+
+        $("#topic .chat_list").removeClass("active_chat");
+        $(this).addClass("active_chat");
+
+        var userid = $(this).attr("data-id");
+        var topid = $(this).attr("data-user");
+        
+        
+        var parents = $("#select_type").val();
+        
+        let dataRef = firebase.database().ref('chat/'+parents+'/'+topid+"/topics/");
+        dataRef.child(userid).update({'status':'active','unreadCount':0});
+
+
+        var previous_topic = $("#select_topic").val();
+        
+        if(previous_topic)
+        {
+            dataRef.child(previous_topic).update({'status':'inactive'});
+        }
+        
+
+        let chatRef = firebase.database().ref('chat/'+parents+'/'+topid+"/topics/"+userid+"/messages");
+        
+
+        chatRef.orderByChild("createdAt").on("value", function(snapshot)
+        {
+            
+            var categorieshtml = ""; 
+            snapshot.forEach(function(data)
+            {
+                var msg_type =(data.val().sendBy =='user')? "incoming_msg":"outgoing_msg";
+                var msg_form = (data.val().sendBy =='user')? "received_msg":"sent_msg";
+                var msg_receive = (data.val().sendBy =='user')? "received_withd_msg":"";
+
+                var a = new Date(data.val().createdAt);
+                var year = a.getFullYear();
+                var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                 
+                var month = months[a.getMonth()];
+                var date = a.getDate();
+                var hours = a.getHours(); 
+                var minutes = a.getMinutes();
+
+                var ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                var strTime = hours + ':' + minutes + ' ' + ampm;
+
+                categorieshtml +="<div class='"+msg_type+"'><div class='"+msg_form+"'>";
+                categorieshtml +="<div class='"+msg_receive+"'>";
+                categorieshtml +="<p>"+data.val().message+"</p>";
+                categorieshtml +="<span class='time_date'> "+data.val().userName+" | "+strTime+" | "+month+" "+date+" "+year+"</span>";
+                categorieshtml +="</div></div></div>";
+
+
+            });
+            $(".msg_history").html(categorieshtml);
+        });
+
+        $("#select_topic").val(userid);
+
+    });
+
+    $(document).on('click', '.msg_send_btn', function(event)
+    {
+        event.preventDefault();
+        var message = $(".write_msg").val();
+        if(message)
+        {
+            $(".write_msg").val(''); 
+            var userid = $("#topic .active_chat").attr("data-id");
+
+            var topid = $("#topic .active_chat").attr("data-user");
+
+            var d = new Date($.now());
+            var n = d.getTime();
+
+            var parents = $("#select_type").val();
+            let chatRef = firebase.database().ref('chat/'+parents+'/'+topid+"/topics/"+userid+"/messages");
+            var key = chatRef.push().key;
+            var cat = {
+                "message": message,
+                "sendBy":"admin",
+                "userName":"admin",
+                "createdAt":n,
+                "msgStatus": "unread"
+            };
+            let topicRef = firebase.database().ref('chat/'+parents+'/'+topid+"/topics/"+userid);
+
+            chatRef.child(key).set(cat, function(err)
+            {
+                if(err){
+                    console.log(err.message);
+                    
+                }
+                else
+                {
+                    topicRef.update({'latest_time':n,'latest_message':message});
+                }
+                
+                $("#topic .chat_list[data-id='"+userid+"']").addClass('active_chat');
+                $(".write_msg").val(''); 
+                
+            });
+        }         
+        
+    });
+    /*var settings = {
+        type : 'POST',
+        url : "https://fcm.googleapis.com/fcm/send",
+        headers : {
+            Authorization : 'key=' + 'AAAAaJN9s4g:APA91bG6NvuCAPcGvgfsOux-w2Zhc1drBNtTb01MCyAYVslEWdR7hSs_r-KvyreoQqa7weRYJtKqjUrQkdYCYCW9eJl_qGWdHomlUqSlHq6lsOQCCv-dTz14LyjaX50XRtxP69hdQAfl',
+            "content-type": "application/json"
+        },
+        dataType: 'json',
+        contentType : 'application/json',
+        data : JSON.stringify
+        ({
+            "notification": 
+            {
+                "title": "Worker",
+                "body": "Are you There?",
+                "click_action":"http://abac-fdef3.firebaseapp.com",
+                "icon":"https://firebasestorage.googleapis.com/v0/b/abac-fdef3.appspot.com/o/images%2Factivity%2F-LzoQggMe5vaAOXqdC8X.jpg?alt=media&token=0aeb8c41-817d-4287-b848-aca98705e1d3"
+            },
+            "to": token
+        }),
+        processData: false,
+        success : function(response) {
+            
+        },
+        error : function(xhr, status, error) {
+            //console.log(xhr.error);                   
+        }
+    }
+    $.ajax(settings).done(function (response)
+    {
+        console.log(response);
+        $("#output").html(JSON.stringify(response, null, 4));
+    });*/ 
+</script>

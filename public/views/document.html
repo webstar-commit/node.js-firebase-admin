@@ -1,0 +1,292 @@
+<h2>Document History</h2>
+
+<hr />
+<div class="row">
+    
+    <div class="col-lg-3">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>worker
+            </div>
+            <div class="card-body">
+                <div class="inbox_chat table table-bordered" id="workers">
+                    
+                </div>
+
+            </div>     
+        </div>
+        
+    </div>
+    <div class="col-lg-3">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>document type
+            </div>
+            <div class="card-body">
+                <div class="table table-bordered" id="type">
+                    
+                </div>
+
+            </div>     
+        </div>
+        
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-4 document-history">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>Document List</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        </thead>
+                        <tbody>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <input type="hidden" id="select_topic"/>
+    <input type="hidden" id="select_user"/>
+    <input type="hidden" id="select_type"/>
+</div>
+<script>
+    function convertDate(date)
+    {
+        var a = new Date(date);
+        
+        var month = a.getMonth();
+        var date = a.getDate();
+        var year = a.getFullYear();
+        return year +"-"+ month + "-"+ date;
+
+    }
+    var dbCategories = firebase.database().ref("workers");
+
+    dbCategories.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+
+                               
+                categorieshtml += "<div class='chat_list' data-id="+category.key+">";
+                categorieshtml += "<div class='chat_people'>";
+                //for category name
+                categorieshtml += "<div class='chat_img'><i class='fas fa-user'></i></div>";
+                categorieshtml += "<div class='chat_ib'>";
+                categorieshtml += "<h5>"+category.val().fullName+"</h5>";
+                categorieshtml += "</div>";
+
+                //for category description
+                categorieshtml += "</div>";
+                categorieshtml += "</div>";
+
+
+            });
+
+            $("#workers").html(categorieshtml);
+            
+        }
+
+    });
+    
+    $(document).on('click', '#workers .chat_list', function()
+    {
+        $("#workers .chat_list").removeClass("active_chat");
+        $("#parent .chat_list").removeClass("active_chat");
+        $(this).addClass("active_chat");
+
+       	var id = $(this).attr("data-id");         
+        let documentType =['contratos','nominas','solicitar','tramitar','validar'];
+
+
+        
+        var categorieshtml ="";
+        documentType.forEach(function(data)
+        {
+            
+	        categorieshtml += "<div class='chat_list' data-id ="+id+" data-type="+data+">";
+            categorieshtml += "<div class='chat_people'>";
+            //for category name
+            categorieshtml += "<div class='chat_img'><i class='fas fa-file'></i></div>";
+            categorieshtml += "<div class='chat_ib'>";
+            categorieshtml += "<h5>"+data+"</h5>";
+
+            
+                     
+            categorieshtml += "</div>";
+
+            //for category description
+            categorieshtml += "</div>";
+            categorieshtml += "</div>";
+
+
+        });
+            
+        $("#type").html(categorieshtml);
+        $(".document-history #dataTable tbody").html("");
+        
+    });
+    
+
+    $(document).on('click', '#type .chat_list', function(event)
+    {
+        event.preventDefault();
+
+        $("#type .chat_list").removeClass("active_chat");
+        $(this).addClass("active_chat");
+
+        var id = $(this).attr("data-id");
+        var type = $(this).attr("data-type");
+        
+        
+        let chatRef = firebase.database().ref('workers/'+id);
+        
+        chatRef.child(type).orderByValue().on("value",function(snapshot)
+        {
+        	var categorieshtml = ""; 
+            
+            
+        	snapshot.forEach(function(data)
+            {
+            	if(type =='contratos')
+            	{
+                    if(data.val() !='')
+                	{
+                    	categorieshtml += "<tr data-id='"+data.key+"''>";
+                		categorieshtml += "<td>";
+                        
+    	                categorieshtml += "<a href='"+data.val()+"'>"+data.key+"</a>";
+                        
+    	                categorieshtml += "</td>";
+                        categorieshtml += "<td>";
+                        categorieshtml += "<button data-id ='con' class='btn btn-sm btn-primary btn-remove' type='button'>Remove</button>";
+                        categorieshtml += "</td>";
+    	                categorieshtml += "</tr>";
+                    }
+            	}	
+            	else if(type =="nominas")
+            	{
+                    
+            		categorieshtml += "<tr data-id='"+data.key+"''>";
+            		categorieshtml += "<td>";
+	                categorieshtml += ""+data.val().month+"";
+	                categorieshtml += "</td>";
+	                categorieshtml += "<td>";
+	                categorieshtml += "<a href='"+data.val().pdfurl+"'>pdf</a>";
+	                categorieshtml += "</td>";
+	                categorieshtml += "<td>";
+	                categorieshtml += ""+convertDate(data.val().real_date)+"";
+	                categorieshtml += "</td>";
+
+                    categorieshtml += "<td>";
+                    categorieshtml += "<button data-id= 'nom' class='btn btn-sm btn-primary btn-remove' type='button'>Remove</button>";
+                    categorieshtml += "</td>";
+
+	                categorieshtml += "</tr>";
+            	}
+            	else if(type =="solicitar")
+            	{
+            		categorieshtml += "<tr data-id='"+data.key+"''>";
+            		categorieshtml += "<td>";
+	                categorieshtml += ""+convertDate(data.val().review_date)+"";
+	                categorieshtml += "</td>";
+	                categorieshtml += "<td>";
+	                categorieshtml += "<a href='"+data.val().reporturl+"'>report</a>";
+	                categorieshtml += "</td>";
+	               
+
+	                categorieshtml += "</tr>";
+            	}
+            	else if(type =="tramitar")
+            	{
+            		if(data.key =='items')
+            		{
+            			                    
+
+                        data.forEach(function(shoot)
+                        {
+                            categorieshtml += "<tr data-id='"+data.key+"''>";
+                            categorieshtml += "<td>";
+                            categorieshtml += convertDate(shoot.val().review_date);
+                            categorieshtml += "</td>";
+                            categorieshtml += "<td>";
+                            categorieshtml += "<a href='"+shoot.val().reporturl+"'>report</a>";
+                            categorieshtml += "</td>";
+                    
+                            categorieshtml += "</tr>";
+
+                        });
+            			
+            		}
+            		
+            	}
+            	else if(type =="validar")
+            	{
+            		categorieshtml += "<tr data-id='"+data.key+"''>";
+            		categorieshtml += "<td>";
+	                categorieshtml += "<a href='"+data.val().reporturl+"'>report</a>";
+	                categorieshtml += "</td>";
+	               
+
+	                categorieshtml += "</tr>";
+            	}
+
+            });
+            
+            var headerhtml ="";
+            if(type =='contratos')
+            {
+                headerhtml += "<tr>";
+                headerhtml += "<th>document</th>";
+                headerhtml += "<th>Actions</th>";
+                headerhtml += "</tr>";
+            }
+            else if(type =="nominas")
+            {
+                headerhtml += "<tr>";
+                headerhtml += "<th>month</th>";
+                headerhtml += "<th>document</th>";
+                headerhtml += "<th>real date</th>";
+                headerhtml += "<th>Actions</th>";
+                headerhtml += "</tr>";
+            }
+
+            $("#dataTable tbody").html(categorieshtml);
+            $("#dataTable thead").html(headerhtml);
+            
+        });
+
+        
+        
+
+    });
+    
+    $(document).on('click', '.btn-remove', function()
+    {
+        
+        var type = $(this).attr("data-id");
+        var id = $(this).parent().parent().attr("data-id");
+        var user_id = $(".active_chat").attr("data-id");
+        
+        if(type=='con')
+        {
+            let userRef = firebase.database().ref('workers/' + user_id);
+
+            userRef.child('contratos').update({"'+id+'":''});
+        }
+        else if(type =='nom')
+        {
+            let userRef = firebase.database().ref('workers/' + user_id);
+
+            userRef.child('nominas').child(id).remove();
+        }
+        
+        
+        
+
+    });
+    
+    
+</script>

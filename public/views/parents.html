@@ -1,0 +1,72 @@
+<h2>Parents</h2>
+
+<hr />
+
+<div class="row">
+
+    
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>Parents</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="categories">
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+      
+    
+
+    var dbCategories = firebase.database().ref("parents");
+
+    dbCategories.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+                
+                categorieshtml += "<tr>";
+
+                //for category name
+                categorieshtml += "<td>";
+                categorieshtml += category.val().fullName;
+                categorieshtml += "</td>";
+
+                //for category description
+                categorieshtml += "<td>";
+                categorieshtml += category.val().email;
+                categorieshtml += "</td>";
+                categorieshtml += "<td>";
+                categorieshtml += category.val().phone;
+                categorieshtml += "</td>";
+                             
+                categorieshtml += "</tr>";
+
+
+            });
+
+            $("#categories").html(categorieshtml);
+            $('#dataTable').DataTable();
+        }
+
+    });
+    
+        
+</script>

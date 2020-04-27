@@ -1,0 +1,885 @@
+
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <h4>Add new </h4>
+        <form id="category-form">
+            <div class="form-group">
+                <label for="category-name">Enter name</label>
+                <input type="text" class="form-control" id="activity-name" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity name
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category-name">Enter Description</label>
+                <input type="text" class="form-control" id="activity-description" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity description
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Select Category</label>
+                <select id="category" class="form-control">
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Select Schools</label>
+                <select id="school" class="form-control">
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Select Worker</label>
+                <select id="worker" class="form-control">
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category-name">Enter Price</label>
+                <input type="text" class="form-control" id="activity-price" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity price
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category-name">Enter Duration Hours</label>
+                <input type="text" onkeypress="return onlyNumberKey(event)" max="9" maxlength="1"  class="form-control" id="activity-duration" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity Duration Hours
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category-name">Enter Report</label>
+                <textarea type="text" class="form-control" id="activity-report">
+                </textarea>
+                
+                <div class="invalid-feedback">
+                    Please enter a activity Report
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category-name">Enter Start Time</label>
+                <input type="time" class="form-control" id="activity-starttime" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity Starttime
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="category-name">Start Date</label>
+                
+                <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                    <input class="form-control" type="text" readonly name="startdate" id="startdate"/>
+    				<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="category-name">End Date</label>
+                
+                <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                    <input class="form-control" type="text" readonly name="enddate" id="enddate"/>
+    				<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="category-name">Choose a day</label>
+                <div class="choose-day">
+                    
+                </div>
+                
+                
+            </div>
+            <div class="form-group">
+                <label for="category-name">Meal</label>
+                <input type="checkbox" class="" id="activity-meal" />
+                
+                <div class="invalid-feedback">
+                    Please enter a activity meal
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category-thumbnail">Cover Image</label>
+                <input type="file" class="form-control" id="category-thumbnail" />
+                <div class="invalid-feedback">
+                    Please choose a valid image thumbnail
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <img id="selected-thumbnail" width="250" height="150" src="#" />
+            </div>
+            <div class="form-group gallery">
+                
+            </div>
+
+            <div class="form-group">
+                <div class="progress">
+                    <div class="progress-bar" id="upload-progress" style="width:0%">0%</div>
+                </div>
+            </div>
+            <div class="from-group">
+                <button id="save-category" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+        <div id="result">
+
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>Activities</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categories">
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		 <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Activity Detail</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" data-id="">
+				<div class='form-group'>
+                    <label for='category-name'>Name:</label>
+                    <input type='text' class='form-control' id='activity-name' value='' />
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Description:</label>
+                    <input type='text' class='form-control' id='activity-description' value='' />
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Start Date:</label>
+                    <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                        <input class="form-control" readonly type="text"  name="startdate" id="startdate" value=''>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>End Date:</label>
+                    <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                        <input class="form-control" type="text"  name="enddate" id="enddate" readonly value=''>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Days:</label>
+                    <div class="choose-day"></div>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Price:</label>
+                    <input type="text" class="form-control" id="activity-price" />
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Category:</label>
+                    <select id="category" class="form-control">
+
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>School:</label>
+                    <select id="school" class="form-control">
+
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Worker:</label>
+                    <select id="worker" class="form-control">
+
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Report:</label>
+                    <textarea type="text" class="form-control" id="activity-report">
+                    </textarea>
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Start Time:</label>
+                    <input type="time" class="form-control" id="activity-starttime" />
+                </div>
+                <div class='form-group'>
+                    <label for='category-name'>Duration:</label>
+                    <input type="text" onkeypress="return onlyNumberKey(event)" max="9" maxlength="1"  class="form-control" id="activity-duration" />
+                </div>
+                <div class="form-group">
+                    <label for="category-thumbnail">Image</label>
+                    <input type="file" class="form-control" id="category-thumbnail" />
+                    <div class="invalid-feedback">
+                        Please choose a valid image thumbnail
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="progress">
+                        <div class="progress-bar" id="upload-cover-progress" style="width:0%">0%</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <img id="selected-thumbnail" width="250" height="150" src="#" />
+                </div>
+                <div class="form-group">
+                    <label for="category-thumbnail">Gallery Image</label>
+                    <input type="file" class="form-control" id="gallery-thumbnail" />
+                    <div class="invalid-feedback">
+                        Please choose a valid image thumbnail
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="progress">
+                        <div class="progress-bar" id="upload-progress" style="width:0%">0%</div>
+                    </div>
+                </div>
+                <div class="form-group gallery">
+                
+                </div>
+			 </div>
+			 <div class="modal-footer">
+                <button type="button" class="btn btn-update btn-primary" data-dismiss="modal">Update</button>
+			    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			    
+			   </div>
+		    </div>
+	  	</div>
+	</div>
+
+<script>
+	function onlyNumberKey(evt) { 
+          
+        // Only ASCII charactar in that range allowed 
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+        
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+            return false; 
+        return true; 
+    } 
+
+    
+    var days= ["Mon","Tue","Wed","Thu","Fri"];
+    days.forEach(function(data)
+    {
+        $('.choose-day').append('<input type="checkbox" class="" style="margin-left:10px;" id="activity_day" name="activity_day[]" value='+data+'>'+data);
+    });
+
+	var dbCategories = firebase.database().ref("categories");
+
+    dbCategories.once("value").then(function(categories){
+
+        categories.forEach(function(category){
+            $("#category").append("<option value='"+category.key+"'>"+category.val().name+"</option>");
+            $("#exampleModal #category").append("<option value='"+category.key+"'>"+category.val().name+"</option>");     
+        });
+    });
+
+    var dbschool = firebase.database().ref("schools");
+
+    dbschool.once("value").then(function(categories){
+
+        categories.forEach(function(category){
+            $("#school").append("<option value='"+category.key+"'>"+category.val().name+"</option>");
+            $("#exampleModal #school").append("<option value='"+category.key+"'>"+category.val().name+"</option>");          
+        });
+    });
+
+    var dbworker = firebase.database().ref("workers");
+
+    dbworker.once("value").then(function(categories){
+
+        categories.forEach(function(category){
+            $("#worker").append("<option value='"+category.key+"'>"+category.val().fullName+"</option>");
+            $("#exampleModal #worker").append("<option value='"+category.key+"'>"+category.val().fullName+"</option>");          
+        });
+    });
+
+    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+    $("#selected-thumbnail").hide();
+
+    function previewThumbnail(thumbnail){
+        if(thumbnail.files && thumbnail.files[0]){
+            var reader = new FileReader(); 
+
+            reader.onload = function(e){
+                $("#selected-thumbnail").attr('src', e.target.result);
+                $("#selected-thumbnail").fadeIn();
+            }
+            reader.readAsDataURL(thumbnail.files[0]);
+        }
+    }
+    function previewGalleryThumbnail(thumbnail)
+    {
+        // var thumbnail ='<img id="selected-gallery" width="150" height="150" src="#" />';
+        if(thumbnail.files && thumbnail.files[0])
+        {
+            var reader = new FileReader(); 
+
+            reader.onload = function(e){
+                
+                $(".gallery").append('<div class="screenshot-view" style="float:left;width:60px;height:60px;"><img width="50" height="50" src='+e.target.result+' /></div>');
+                // $("#selected-thumbnail").attr('src', e.target.result);
+                // $("#selected-thumbnail").fadeIn();
+            }
+            reader.readAsDataURL(thumbnail.files[0]);
+        }
+    }
+    $("#category-thumbnail").change(function(){
+        previewThumbnail(this);
+    });
+
+    
+    
+    $("#save-category").click(function(){
+        $("#category-name").removeClass("is-invalid");
+        $("#category-desc").removeClass("is-invalid");
+        $("#category-thumbnail").removeClass("is-invalid");
+
+        var activity_name = $("#activity-name").val();
+        var category = $("#category").val();
+
+        var description = $("#activity-description").val();
+        var school = $("#school").val();
+        var worker = $("#worker").val();
+        var price = $("#activity-price").val();
+        var duration = $("#activity-duration").val();
+        var report = $("#activity-report").val();
+        var starttime = $("#activity-starttime").val();
+        var startdate = $("#startdate").val();
+        var enddate = $("#enddate").val();
+        
+        var cname = $("#category option:selected").text();
+        var sname = $("#school option:selected").text();
+        var wname = $("#worker option:selected").text();
+
+        var days = $(".choose-day  input[type=checkbox]:checked").map(function() {
+                return this.value;
+        }).get().join(",");
+
+
+        var thumbnail = $("#category-thumbnail").prop("files")[0];
+
+        if(!activity_name){
+            $("#activity-name").addClass("is-invalid");
+            return; 
+        }
+   
+
+        if(thumbnail == null){
+            $("#category-thumbnail").addClass("is-invalid");
+            return; 
+        }
+
+        if($.inArray(thumbnail["type"], validImageTypes)<0){
+            $("#category-thumbnail").addClass("is-invalid");
+            return; 
+        }
+		
+		
+        var database = firebase.database().ref("activities");
+
+        database.once("value").then(function(snapshot)
+        {
+            
+            
+                var key = database.push().key;
+                var name = thumbnail["name"];
+                var ext = name.substring(name.lastIndexOf("."), name.length);
+
+                var thumbname = new Date().getTime(); 
+
+                var storageRef = firebase.storage().ref("/images/activity/" + key + ext);
+
+                var uploadTask = storageRef.put(thumbnail);
+
+                uploadTask.on("state_changed", 
+
+                    function progress(snapshot){
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; 
+
+                        $("#upload-progress").html(Math.round(percentage) + "%");
+                        $("#upload-progress").attr("style", "width:"+percentage + "%");
+                    }, 
+
+                    function error(err)
+                    {
+
+                    }, 
+
+                    function complete(){
+                        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) 
+                        {
+                                                      
+                            
+                            var myDate_start=startdate.split("-");
+                            var startDate=myDate_start[1]+"/"+myDate_start[0]+"/"+myDate_start[2];
+
+                            var myDate_end=enddate.split("-");
+                            var endDate=myDate_end[1]+"/"+myDate_end[0]+"/"+myDate_end[2];
+
+                            var cat = {
+								"name": activity_name,
+                                "image": downloadURL,
+                                "imageurl": key+ext,
+                                "id":key,
+                                "categoryId":category,
+                                "categoryName":cname,
+                                "description":description,
+                                "schoolId":school,
+                                "schoolName":sname,
+                                "workerId":worker,
+                                "workerName":wname,
+                                "price":price,
+                                "duration_hrs": duration,
+                                "report":report,
+                                "start_time":starttime,
+                                "start_date":new Date(startDate).getTime(),
+                                "end_date":new Date(endDate).getTime(),
+                                "days":days
+                            };
+
+
+                            database.child(key).set(cat, function(err){
+                                if(err){
+                                    $("#result").attr("class", "alert alert-danger");
+                                    $("#result").html(err.message);
+                                }else{
+                                    $("#result").attr("class", "alert alert-success");
+                                    $("#result").html("successfully added");
+                                }
+                                resetForm();
+                            });
+
+                            let worker_database = 
+                            firebase.database().ref("workers/"+worker+"/activitiesEnrolled");
+                            var wkey = worker_database.push().key;
+                            worker_database.child(wkey).set(cat, function(err)
+                            {
+                                
+                            });  
+                        });
+                    }
+                
+                );
+
+            
+
+        });
+
+    });
+
+    $(".btn-update").click(function(){
+        $("#exampleModal #category-name").removeClass("is-invalid");
+        $("#exampleModal category-desc").removeClass("is-invalid");
+        $("#exampleModal #category-thumbnail").removeClass("is-invalid");
+
+        var activity_name = $("#exampleModal #activity-name").val();
+        var category = $("#exampleModal #category").val();
+
+        var description = $("#exampleModal #activity-description").val();
+        var school = $("#exampleModal #school").val();
+        var worker = $("#exampleModal #worker").val();
+        var price = $("#exampleModal #activity-price").val();
+        var duration = $("#exampleModal #activity-duration").val();
+        var report = $("#exampleModal #activity-report").val();
+        var starttime = $("#exampleModal #activity-starttime").val();
+        var startdate = $("#exampleModal #startdate").val();
+        var enddate = $("#exampleModal #enddate").val();
+        
+        var cname = $("#exampleModal #category option:selected").text();
+        var sname = $("#exampleModal #school option:selected").text();
+        var wname = $("#exampleModal #worker option:selected").text();
+
+        var days = $("#exampleModal .choose-day  input[type=checkbox]:checked").map(function() {
+                return this.value;
+        }).get().join(",");
+
+
+        if(!activity_name){
+            $("#exampleModal #activity-name").addClass("is-invalid");
+            return; 
+        }
+        var key = $("#exampleModal .modal-body").attr("data-id");
+        var database = firebase.database().ref("activities/"+key);
+
+        database.once("value").then(function(snapshot)
+        {
+                      
+                                
+                var myDate_start=startdate.split("-");
+                var startDate=myDate_start[1]+"/"+myDate_start[0]+"/"+myDate_start[2];
+
+                var myDate_end=enddate.split("-");
+                var endDate=myDate_end[1]+"/"+myDate_end[0]+"/"+myDate_end[2];
+
+                var cat = {
+                    "name": activity_name,
+                    "id":key,
+                    "categoryId":category,
+                    "categoryName":cname,
+                    "description":description,
+                    "schoolId":school,
+                    "schoolName":sname,
+                    "workerId":worker,
+                    "workerName":wname,
+                    "price":price,
+                    "duration_hrs": duration,
+                    "report":report,
+                    "start_time":starttime,
+                    "start_date":new Date(startdate).getTime(),
+                    "end_date":new Date(enddate).getTime(),
+                    "days":days
+                };
+
+
+                database.update(cat, function(err){
+                    if(err){
+                        $("#result").attr("class", "alert alert-danger");
+                        $("#result").html(err.message);
+                    }else{
+                        $("#result").attr("class", "alert alert-success");
+                        // $("#result").html("successfully added");
+                    }
+                    resetForm();
+                });
+
+                       
+            
+
+        });
+
+    });
+
+    function resetForm(){
+       $("#category-form")[0].reset(); 
+       $("#selected-thumbnail").fadeOut();
+       $("#upload-progress").html("Completed");
+    }
+
+    var dbCategories = firebase.database().ref("activities");
+
+    dbCategories.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+                
+                categorieshtml += "<tr data-id="+category.key+" data-url="+category.val().imageurl+">";
+
+                //for category name
+                categorieshtml += "<td>";
+                categorieshtml += category.val().name;
+                categorieshtml += "</td>";
+
+                categorieshtml += "<td>";
+                categorieshtml += category.val().price;
+                categorieshtml += "</td>";
+
+                var a = new Date(category.val().start_date);
+                var s_year = a.getFullYear();
+                           
+                var s_month = a.getMonth()+1;
+                var s_date = a.getDate();
+
+
+                var e = new Date(category.val().end_date);
+                var e_year = e.getFullYear();
+                           
+                var e_month = e.getMonth()+1;
+                var e_date = e.getDate();
+
+                categorieshtml += "<td>";
+                categorieshtml += s_year +"-"+s_month+"-"+s_date;
+                categorieshtml += "</td>";
+
+                categorieshtml += "<td>";
+                categorieshtml += e_year +"-"+e_month+"-"+e_date;
+                categorieshtml += "</td>";
+
+                categorieshtml += "<td>";
+                categorieshtml += category.val().duration_hrs;
+                categorieshtml += "</td>";
+
+
+                //for category description
+                categorieshtml += "<td>";
+                categorieshtml += "<button class='btn btn-sm btn-primary btn-remove' type='button'>Remove</button>";
+                categorieshtml += "<button class='btn btn-sm btn-primary btn-detail' type='button' data-toggle='modal' data-target='#exampleModal'>Update</button>";
+                
+                categorieshtml += "</td>";
+                
+                categorieshtml += "</tr>";
+
+
+            });
+
+            $("#categories").html(categorieshtml);
+            $('#dataTable').DataTable();
+        }
+
+    });
+    $(document).on('click', '.btn-remove', function()
+    {
+        
+        var id = $(this).parent().parent().attr("data-id");
+        let userRef = firebase.database().ref('activities/' + id);
+        userRef.remove();
+        var url= $(this).parent().parent().attr("data-url");
+        var storageRef = firebase.storage().ref("/images/activity/" + url);
+        storageRef.delete().then(function() {
+                // File deleted successfully
+        }).catch(function(error) {
+                // Uh-oh, an error occurred!
+        });
+
+    });
+
+    $(document).on('click', '.gallery_remove_image', function()
+    {
+        
+        var imageurl = $(this).attr("data-url");
+        var id = $(this).attr("data-id");
+        var key = $(this).attr("data-key");
+
+        let userRef = firebase.database().ref('activities/'+id+'/gallery/' + key);
+        userRef.remove();
+
+        var storageRef = firebase.storage().ref("/images/activity/gallery/"+id+"/"+ imageurl);
+        storageRef.delete().then(function() 
+        {
+            console.log("remove");
+            
+            // File deleted successfully
+        }).catch(function(error) {
+            // Uh-oh, an error occurred!
+        });
+        $(this).parent().remove();
+
+    });
+
+    $(document).on('click', '.btn-detail', function()
+    {
+        $("#exampleModal .gallery").html('');
+        var id = $(this).parent().parent().attr("data-id");
+
+        let ref = firebase.database().ref('activities/'+id);
+         $("#exampleModal .modal-body").attr("data-id",id);
+        ref.orderByValue().on("value", function(snapshot) 
+        {
+  			
+            var a = new Date(snapshot.val().start_date);
+            var s_year = a.getFullYear();
+                       
+            var s_month = a.getMonth()+1;
+            var s_date = a.getDate();
+
+
+            var e = new Date(snapshot.val().end_date);
+            var e_year = e.getFullYear();
+                       
+            var e_month = e.getMonth()+1;
+            var e_date = e.getDate();
+
+            var categorieshtml = "";
+            
+            $("#exampleModal #activity-name").val(snapshot.val().name);
+            $("#exampleModal #activity-description").val(snapshot.val().description);
+            $("#exampleModal #startdate").val(s_year +"-"+s_month+"-"+s_date);
+            $("#exampleModal #enddate").val(e_year +"-"+e_month+"-"+e_date);
+            $("#exampleModal #activity-price").val(snapshot.val().price);
+            $("#exampleModal #activity-report").val(snapshot.val().report);
+            $("#exampleModal #activity-starttime").val(snapshot.val().start_time);
+            $("#exampleModal #activity-duration").val(snapshot.val().duration_hrs);
+            $("#exampleModal #category").val(snapshot.val().categoryId);
+            $("#exampleModal #school").val(snapshot.val().schoolId);
+            $("#exampleModal #worker").val(snapshot.val().workerId);
+            
+
+            $("#exampleModal #selected-thumbnail").attr('src', snapshot.val().image);
+            
+            var days= snapshot.val().days;
+            
+
+            $("#exampleModal .choose-day input:checkbox").each(function()
+            { 
+                $(this).prop("checked", false);
+                if (days.includes(this.value) ==true)
+                    $(this).prop("checked", true);
+                
+            });
+
+            
+		});
+
+        ref.child('gallery').orderByValue().once("value", function(snapshot) 
+        {
+            
+            snapshot.forEach(function(data)
+            {
+                
+                $("#exampleModal .gallery").append('<div class="screenshot-view" style="float:left;width:60px;height:60px;"><img width="50" height="50" src='+data.val().image+' /><a class="gallery_remove_image" href="#" style="margin:20px;width:50%;" data-id ='+id+' data-key='+data.key+' data-url='+data.val().imageurl+'><i class="fas fa fa-trash fa-sm"></i></a></div>');
+            });
+        });
+        
+        /*$('.datepicker').datepicker();*/
+
+    });
+    
+    $(document).ready(function() {
+        $('.datepicker').datepicker();
+    })
+    $("#exampleModal #category-thumbnail").change(function(){
+        var thumbnail = $("#exampleModal #category-thumbnail").prop("files")[0];
+        if(thumbnail == null)
+        {
+            $("#exampleModal #category-thumbnail").addClass("is-invalid");
+            return; 
+        }
+
+        if($.inArray(thumbnail["type"], validImageTypes)<0)
+        {
+            $("#exampleModal #category-thumbnail").addClass("is-invalid");
+            return; 
+        }
+
+        var key = $("#exampleModal .modal-body").attr("data-id");
+        var name = thumbnail["name"];
+        var ext = name.substring(name.lastIndexOf("."), name.length);
+
+        var thumbname = new Date().getTime(); 
+        var storageRef = firebase.storage().ref("/images/activity/" + key +ext);
+        var uploadTask = storageRef.put(thumbnail);
+        
+        var database = firebase.database().ref("activities/"+key);
+        uploadTask.on("state_changed", 
+                    function progress(snapshot)
+                    {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; 
+
+                        $("#exampleModal #upload-cover-progress").html(Math.round(percentage) + "%");
+                        $("#exampleModal #upload-cover-progress").attr("style", "width:"+percentage + "%");
+                    }, 
+
+                    function error(err){
+
+                    }, 
+
+                    function complete()
+                    {
+                        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) 
+                        {
+                            
+                                   
+                            $("#exampleModal #upload-cover-progress").html("Completed");
+                            $("#exampleModal #selected-thumbnail").attr('src', downloadURL);
+
+                            // $("#exampleModal .progress").hide();
+                            // $("#exampleModal .gallery").append('<div class="screenshot-view" style="float:left;width:60px;height:60px;"><img width="50" height="50" src='+downloadURL+' /><a class="gallery_remove_image" href="#" style="margin:20px;width:50%;" data-id ='+key+' data-key='+gkey+' data-url='+thumbname+ext+'><i class="fas fa fa-trash fa-sm"></i></a></div>');
+                            
+                            var gallery ={
+                                "image": downloadURL,
+                                "imageurl": key+ext
+                            }
+                            
+                            database.update(gallery, function(err)
+                            {
+                                
+                            });  
+                            
+                            
+                        });
+                    }
+                
+                );
+
+    });
+    $("#exampleModal #gallery-thumbnail").change(function(){
+        var thumbnail = $("#gallery-thumbnail").prop("files")[0];
+        if(thumbnail == null)
+        {
+            $("#gallery-thumbnail").addClass("is-invalid");
+            return; 
+        }
+
+        if($.inArray(thumbnail["type"], validImageTypes)<0)
+        {
+            $("#gallery-thumbnail").addClass("is-invalid");
+            return; 
+        }
+
+        var key = $("#exampleModal .modal-body").attr("data-id");
+        var name = thumbnail["name"];
+        var ext = name.substring(name.lastIndexOf("."), name.length);
+
+        var thumbname = new Date().getTime(); 
+        var storageRef = firebase.storage().ref("/images/activity/gallery/" + key +"/"+ thumbname+ext);
+        var uploadTask = storageRef.put(thumbnail);
+        
+        var database = firebase.database().ref("activities/"+key+"/gallery");
+        uploadTask.on("state_changed", 
+                    function progress(snapshot)
+                    {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; 
+
+                        $("#exampleModal #upload-progress").html(Math.round(percentage) + "%");
+                        $("#exampleModal #upload-progress").attr("style", "width:"+percentage + "%");
+                    }, 
+
+                    function error(err){
+
+                    }, 
+
+                    function complete()
+                    {
+                        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) 
+                        {
+                            
+                            var gkey = database.push().key;        
+                            $("#exampleModal #upload-progress").html("Completed");
+                            // $("#exampleModal .progress").hide();
+                            $("#exampleModal .gallery").append('<div class="screenshot-view" style="float:left;width:60px;height:60px;"><img width="50" height="50" src='+downloadURL+' /><a class="gallery_remove_image" href="#" style="margin:20px;width:50%;" data-id ='+key+' data-key='+gkey+' data-url='+thumbname+ext+'><i class="fas fa fa-trash fa-sm"></i></a></div>');
+                            var gallery ={
+                                "image": downloadURL,
+                                "imageurl": thumbname+ext
+                            }
+                            
+                            database.child(gkey).set(gallery, function(err)
+                            {
+                                
+                            });  
+                            
+                            
+                        });
+                    }
+                
+                );
+
+    });
+</script>

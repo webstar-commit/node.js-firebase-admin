@@ -1,0 +1,270 @@
+<h2>Workers</h2>
+
+<hr />
+
+<div class="row">
+
+    
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-list mr-1"></i>Workers</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Ssn</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categories">
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Worker Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form class="form-category" data-id="">
+                <div class="form-group">                 
+                    <label for="price" class="col-md-12 col-form-label">Full Name</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="fullName" id="fullName">  
+                    </div>
+                </div>
+                <div class="form-group">                
+                    <label for="price" class="col-md-12 col-form-label">Email
+                    </label>
+                    <div class="col-md-12">                    
+                         <input type="email" class="form-control" name="email" id="email">             
+                    </div>
+                </div>
+                <div class="form-group">                
+                    <label for="price" class="col-md-12 col-form-label">Phone Number
+                    </label>
+                    <div class="col-md-12">                    
+                         <input type="number" class="form-control" name="phone" id="phone">             
+                    </div>
+                </div>
+                <div class="form-group">                
+                    <label for="price" class="col-md-12 col-form-label">SSN
+                    </label>
+                    <div class="col-md-12">                    
+                         <input type="text" class="form-control" name="ssn" id="ssn">             
+                    </div>
+                </div>    
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success updateCategory">Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Workers Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="workers_detail">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+      
+    
+
+    var dbCategories = firebase.database().ref("workers");
+
+    dbCategories.orderByValue().on("value", function(categories){
+
+        if(categories.exists()){
+            var categorieshtml = ""; 
+            categories.forEach(function(category){
+                
+                categorieshtml += "<tr>";
+
+                //for category name
+                categorieshtml += "<td>";
+                categorieshtml += category.val().fullName;
+                categorieshtml += "</td>";
+
+                //for category description
+                categorieshtml += "<td>";
+                categorieshtml += category.val().email;
+                categorieshtml += "</td>";
+                categorieshtml += "<td>";
+                categorieshtml += category.val().phone;
+                categorieshtml += "</td>";
+                categorieshtml += "<td>";
+                categorieshtml += category.val().ssn;
+                categorieshtml += "</td>";
+                
+                categorieshtml += "<td data-id="+category.key+">";
+                categorieshtml += "<button class='btn btn-sm btn-primary btn-update' type='button' data-toggle='modal' data-target='#exampleModal1' >Update</button>";
+                categorieshtml += "<button class='btn btn-sm btn-primary btn-detail' type='button' data-toggle='modal' data-target='#exampleModal2' >Detail</button>";
+                categorieshtml += "</td>";
+                categorieshtml += "</tr>";
+
+
+            });
+
+            $("#categories").html(categorieshtml);
+            $('#dataTable').DataTable();
+        }
+
+    });
+    $(document).on('click', '.btn-update', function()
+    {
+        
+        var id = $(this).parent().attr("data-id");
+        
+        var fullName = $(this).parent().prev().prev().prev().prev().text();
+        var email = $(this).parent().prev().prev().prev().text();
+        var phone = $(this).parent().prev().prev().text();
+        var ssn = $(this).parent().prev().text();
+
+        $(".form-category").attr('data-id',id);
+        
+        $("#fullName").val(fullName);
+        $("#email").val(email);
+        $("#phone").val(phone);
+        $("#ssn").val(ssn);
+
+        
+    });
+
+    $(document).on('click', '.updateCategory', function()
+    {
+        
+        var id = $(".form-category").attr('data-id');
+
+        var fullName = $("#fullName").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var ssn = $("#ssn").val();
+
+        let dataRef = firebase.database().ref('workers');
+        dataRef.child(id).update({'fullName':fullName,'email':email,'phone':phone,'ssn':ssn}, function(err)
+        {
+            if(err)
+            {
+                
+            }
+            else
+            {
+                $('#exampleModal1').modal('hide');
+            
+            }
+ 
+        }); 
+        
+    });
+
+    $(document).on('click', '.btn-detail', function()
+    {
+        
+        var id = $(this).parent().attr("data-id");
+        let ref = firebase.database().ref('activities/');
+        ref.orderByChild("workerId").equalTo(id).once("value", function(snapshot) 
+        {   
+            if(snapshot.exists())
+            {
+                var categorieshtml = ""; 
+                snapshot.forEach(function(data)
+                {
+                    categorieshtml += "<div class='card' style='margin-bottom:10px;padding:10px 10px 10px 10px;'>";
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Name:</label>";
+                    categorieshtml +="<label>"+data.val().name+"</label>";
+                    categorieshtml +="</div>";
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Description:</label>";
+                    categorieshtml +="<label>"+data.val().description+"</label>";
+                    categorieshtml +="</div>";
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Start Date:</label>";
+                    categorieshtml +="<label>"+data.val().start_date+"</label>";
+                    categorieshtml +="</div>";
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity End Date:</label>";
+                    categorieshtml +="<label>"+data.val().end_date+"</label>";
+                    categorieshtml +="</div>";
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Price:</label>";
+                    categorieshtml +="<label>"+data.val().price+"</label>";
+                    categorieshtml +="</div>";
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Category:</label>";
+                    categorieshtml +="<label>"+data.val().categoryName+"</label>";
+                    categorieshtml +="</div>"; 
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>School:</label>";
+                    categorieshtml +="<label>"+data.val().schoolName+"</label>";
+                    categorieshtml +="</div>";   
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Worker:</label>";
+                    categorieshtml +="<label>"+data.val().workerName+"</label>";
+                    categorieshtml +="</div>";      
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Report:</label>";
+                    categorieshtml +="<label>"+data.val().report+"</label>";
+                    categorieshtml +="</div>"; 
+
+                    categorieshtml +="<div class='form-group dot-line'>";
+                    categorieshtml +="<label for='category-name'>Activity Start Time:</label>";
+                    categorieshtml +="<label>"+data.val().start_time+"</label>";
+                    categorieshtml +="</div>"; 
+
+
+                    categorieshtml +="<div class='form-group'>";
+                    categorieshtml +="<label for='category-name'>Activity Duration:</label>";
+                    categorieshtml +="<label>"+data.val().duration_hrs+"</label>";
+                    categorieshtml +="</div>"; 
+                    categorieshtml += "</div>";
+                });
+
+                 $(".workers_detail").html(categorieshtml);
+            }
+        });
+
+    });
+        
+</script>
